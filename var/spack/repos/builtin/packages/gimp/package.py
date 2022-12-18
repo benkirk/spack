@@ -51,6 +51,7 @@ class Gimp(AutotoolsPackage):
 
     # ref. https://www.gimp.org/source/
     depends_on("pkgconfig", type="build")
+    depends_on("intltool", type="build")
     depends_on("babl")
     depends_on("fontconfig@2.12.4:")
     depends_on("gegl")
@@ -60,7 +61,6 @@ class Gimp(AutotoolsPackage):
     depends_on("glib-networking")
     depends_on("gtk-doc", when="+doc")
     depends_on("gtkplus@2.24.32:2.24.100")
-    depends_on("intltool")
     depends_on("jpeg")
     depends_on("libexif")
     # depends_on("libheif+libde265", when="+libheif")
