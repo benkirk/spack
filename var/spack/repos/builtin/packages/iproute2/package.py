@@ -14,6 +14,8 @@ class Iproute2(AutotoolsPackage):
 
     depends_on("bison", type="build")
     depends_on("flex", type="build")
+    depends_on("libcap")
+    depends_on("libmd")
     depends_on("libmnl")
 
     version("5.11.0", sha256="16b79e6ce65d4d5fd425cef2fd92a58c403a93faeeed0e0a3202b36a8e857d1f")
