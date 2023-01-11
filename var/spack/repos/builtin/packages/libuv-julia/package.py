@@ -17,6 +17,10 @@ class LibuvJulia(AutotoolsPackage):
     version("1.44.1", commit="1b2d16477fe1142adea952168d828a066e03ee4c")
     version("1.42.0", commit="3a63bf71de62c64097989254e4f03212e3bf5fc8")
 
+    depends_on("autoconf", type="build")
+    depends_on("automake", type="build")
+    depends_on("libtool", type="build")
+
     @property
     def libs(self):
         return find_libraries(["libuv"], root=self.prefix, recursive=True)
