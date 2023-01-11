@@ -49,6 +49,13 @@ class Criu(MakefilePackage):
     depends_on("libaio", when="+tests")
     depends_on("py-future", when="+tests")
 
+    def patch(self):
+        # CRIU source comes with a hardcode symlink into /usr/...,
+        # which is either missing or in any case wrong.
+        # Point it to our dependent protobuf instead
+        force_symlink(self.spec['protobuf'].prefix.include + "/google/protobuf/descriptor.proto",
+                      "images/google/protobuf/descriptor.proto")
+
     def install(self, spec, prefix):
         make()
         make("PREFIX={0}".format(prefix), "install")
