@@ -13,8 +13,8 @@ class Libmnl(AutotoolsPackage):
     and easy to get wrong.This library aims to provide simple helpers
     that allows you to re-use code and to avoid re-inventing the wheel."""
 
-    homepage = "https://github.com/threatstack/libmnl"
-    url = "https://github.com/threatstack/libmnl/archive/libmnl-1.0.3.tar.gz"
+    homepage = "https://www.netfilter.org/projects/libmnl/index.html"
+    url = "https://www.netfilter.org/projects/libmnl/files/libmnl-1.0.5.tar.bz2"
 
     version("1.0.5", sha256="274b9b919ef3152bfb3da3a13c950dd60d6e2bcd54230ffeca298d03b40d0525")
     version("1.0.3", sha256="14405da1bb3a679c24e0fe1f2845d47359ed2de8055e588df4b6b19cab68e901")

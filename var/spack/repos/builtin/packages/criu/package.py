@@ -38,6 +38,7 @@ class Criu(MakefilePackage):
     depends_on("libcap")
     depends_on("libnet")
     depends_on("libnl")
+    depends_on("nftables")
     depends_on("protobuf")
     depends_on("protobuf-c")
     depends_on("py-ipaddress")
