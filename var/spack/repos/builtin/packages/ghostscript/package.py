@@ -17,6 +17,8 @@ class Ghostscript(AutotoolsPackage):
 
     executables = [r"^gs$"]
 
+    version("10.02.1", sha256="e429e4f5b01615a4f0f93a4128e8a1a4d932dff983b1774174c79c0630717ad9")
+    version("10.01.2", sha256="a4cd61a07fec161bee35da0211a5e5cde8ff8a0aaf942fc0176715e499d21661")
     version("10.0.0", sha256="a57764d70caf85e2fc0b0f59b83b92e25775631714dcdb97cc6e0cea414bb5a3")
     version("9.56.1", sha256="1598b9a38659cce8448d42a73054b2f9cbfcc40a9b97eeec5f22d4d6cd1de8e6")
     version("9.54.0", sha256="0646bb97f6f4d10a763f4919c54fa28b4fbdd3dff8e7de3410431c81762cade0")
@@ -41,6 +43,7 @@ class Ghostscript(AutotoolsPackage):
     depends_on("zlib")
     depends_on("libxext")
     depends_on("gtkplus")
+    variant("cups", default="True", description="enable cups support")
 
     # https://www.ghostscript.com/doc/9.53.0/News.htm
     conflicts("+tesseract", when="@:9.52", msg="Tesseract OCR engine added in 9.53.0")
@@ -92,6 +95,12 @@ class Ghostscript(AutotoolsPackage):
 
         if self.spec.satisfies("@9.53:"):
             args.extend(self.with_or_without("tesseract"))
+
+        if self.spec.satisfies("@10.02"):
+            args.append("--disable-hidden-visibility")
+
+        if "~cups" in self.spec:
+            args.append("--disable-cups")
 
         return args
 
