@@ -463,6 +463,7 @@ class Bazel(Package):
     # https://github.com/bazelbuild/bazel/commit/5cff4f1edf8b95bf0612791632255852332f72b5
     # https://github.com/bazelbuild/bazel/commit/ab62a6e097590dac5ec946ad7a796ea0e8593ae0
     patch("build-0.29.1.patch", when="@0.29.1")
+    #patch("build-4.2.1.patch", when="@4.2.1") # DJV added to fix no python on rocky 8
 
     # Fix build with Fujitsu compiler
     patch("blaze_util_posix-0.29.1.patch", when="@0.29.1:%fj")

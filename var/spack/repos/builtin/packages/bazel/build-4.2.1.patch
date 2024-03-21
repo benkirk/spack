@@ -1,0 +1,59 @@
+diff --git a/src/main/java/com/google/devtools/build/lib/starlarkbuildapi/python/PyRuntimeInfoApi.java.orig b/src/main/java/com/google/devtools/build/lib/starlarkbuildapi/python/PyRuntimeInfoApi.java
+index 9a178ce..743bb88 100755
+--- a/src/main/java/com/google/devtools/build/lib/starlarkbuildapi/python/PyRuntimeInfoApi.java.orig
++++ b/src/main/java/com/google/devtools/build/lib/starlarkbuildapi/python/PyRuntimeInfoApi.java
+@@ -45,7 +45,7 @@ import net.starlark.java.eval.StarlarkValue;
+     category = DocCategory.PROVIDER)
+ public interface PyRuntimeInfoApi<FileT extends FileApi> extends StarlarkValue {
+
+-  static final String DEFAULT_STUB_SHEBANG = "#!/usr/bin/env python";
++  static final String DEFAULT_STUB_SHEBANG = "#!/usr/bin/env python3";
+
+   @StarlarkMethod(
+       name = "interpreter_path",
+diff --git a/src/test/java/com/google/devtools/build/lib/bazel/rules/python/BazelPyBinaryConfiguredTargetTest.java.orig b/src/test/java/com/google/devtools/build/lib/bazel/rules/python/BazelPyBinaryConfiguredTargetTest.java
+index 37bd77d..756ab9c 100755
+--- a/src/test/java/com/google/devtools/build/lib/bazel/rules/python/BazelPyBinaryConfiguredTargetTest.java.orig
++++ b/src/test/java/com/google/devtools/build/lib/bazel/rules/python/BazelPyBinaryConfiguredTargetTest.java
+@@ -238,7 +238,7 @@ public class BazelPyBinaryConfiguredTargetTest extends BuildViewTestCase {
+
+     String py2Shebang = getShebangFromStub(py2);
+     String py3Shebang = getShebangFromStub(py3);
+-    assertThat(py2Shebang).isEqualTo("#!/usr/bin/env python");
++    assertThat(py2Shebang).isEqualTo("#!/usr/bin/env python3");
+     assertThat(py3Shebang).isEqualTo("#!/usr/bin/env python3");
+   }
+
+diff --git a/src/test/py/bazel/launcher_test.py.orig b/src/test/py/bazel/launcher_test.py
+index 17efcc5..2c34722 100755
+--- a/src/test/py/bazel/launcher_test.py.orig
++++ b/src/test/py/bazel/launcher_test.py
+@@ -355,7 +355,7 @@ class LauncherTest(test_base.TestBase):
+         'helloworld(', '  name = "hello",', '  out = "hello.txt",', ')'
+     ])
+     foo_py = self.ScratchFile('foo/foo.py', [
+-        '#!/usr/bin/env python',
++        '#!/usr/bin/env python3',
+         'import sys',
+         'if len(sys.argv) == 2:',
+         '  with open(sys.argv[1], "w") as f:',
+@@ -364,7 +364,7 @@ class LauncherTest(test_base.TestBase):
+         '  print("Hello World!")',
+     ])
+     test_py = self.ScratchFile('foo/test.py', [
+-        '#!/usr/bin/env python',
++        '#!/usr/bin/env python3',
+         'import unittest',
+         'class MyTest(unittest.TestCase):',
+         '  def test_dummy(self):',
+diff --git a/third_party/py/mock/setup.py.orig b/third_party/py/mock/setup.py
+index a6ee625..f3d8154 100755
+--- a/third_party/py/mock/setup.py.orig
++++ b/third_party/py/mock/setup.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/env python3
+
+ # Copyright (C) 2007-2012 Michael Foord & the mock team
+ # E-mail: fuzzyman AT voidspace DOT org DOT uk
+
