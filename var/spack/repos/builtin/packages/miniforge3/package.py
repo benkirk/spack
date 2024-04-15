@@ -12,6 +12,11 @@ class Miniforge3(Package):
     homepage = "https://github.com/conda-forge/miniforge"
     url = "https://github.com/conda-forge/miniforge/releases/download/4.8.3-2/Miniforge3-4.8.3-2-Linux-x86_64.sh"
 
+    version("24.3.0-0-Linux-x86_64",
+        sha256="23367676b610de826f50f7ddc91139a816d4b59bd4c69cc9b6082d9b2e7fe8a3",
+        url="https://github.com/conda-forge/miniforge/releases/download/24.3.0-0/Miniforge3-24.3.0-0-Linux-x86_64.sh",
+        expand=False,
+    )
     version(
         "4.8.3-4-Linux-x86_64",
         url="https://github.com/conda-forge/miniforge/releases/download/4.8.3-4/Miniforge3-4.8.3-4-Linux-x86_64.sh",
