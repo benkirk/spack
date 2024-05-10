@@ -53,6 +53,8 @@ class Dakota(CMakePackage):
     variant("shared", default=True, description="Enables the build of shared libraries")
     variant("mpi", default=True, description="Activates MPI support")
 
+    patch("isnan.patch", when="@6.18:")
+
     # Generic 'lapack' provider won't work, dakota searches for
     # 'LAPACKConfig.cmake' or 'lapack-config.cmake' on the path
     depends_on("netlib-lapack")
