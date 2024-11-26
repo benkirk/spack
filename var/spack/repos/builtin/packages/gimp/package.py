@@ -67,12 +67,12 @@ class Gimp(AutotoolsPackage):
     # variant("python",      default=False, description="Build with Python bindings")
 
     # ref. https://www.gimp.org/source/
-    depends_on("gettext", type="build")
-    depends_on("pkgconfig", type="build")
     depends_on("babl")
     depends_on("fontconfig@2.12.4:")
+    depends_on("gdk-pixbuf", type="build")
     depends_on("gegl")
     depends_on("gettext")
+    depends_on("gettext", type="build")
     depends_on("gexiv2")
     depends_on("ghostscript", when="+ghostscript")
     depends_on("glib")
@@ -82,6 +82,7 @@ class Gimp(AutotoolsPackage):
     depends_on("intltool")
     depends_on("jpeg")
     depends_on("libexif")
+    depends_on("pkgconfig", type="build")
     # depends_on("libheif+libde265", when="+libheif")
     depends_on("libjxl", when="+jpegxl")
     depends_on("libjxl@:0.7", when="+jpegxl@:2.10.32")
