@@ -41,8 +41,6 @@ class Libwmf(AutotoolsPackage):
     depends_on("libjpeg")
     depends_on("zlib-api")
 
-    patch("limits_h.patch", sha256="9e8a6fe9c21f1db86409bca2e82f5c2df0cc4ffc250abc0db6e2d1b3535c3315")
-
     def configure_args(self):
         args = ["--disable-static"]
         return args
