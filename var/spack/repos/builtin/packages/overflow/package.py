@@ -47,6 +47,8 @@ class Overflow(CMakePackage):
             self.define_from_variant("OMP", "omp"),
             self.define_from_variant("MPI", "mpi"),
             f"-DCMAKE_INSTALL_BINDIR={self.prefix.bin}",
+            f'-DCMAKE_BUILD_TYPE="Custom"',
+            f'-DFLAG_VERSION="multiperf"',
         ]
 
         return args
