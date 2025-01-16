@@ -8,6 +8,7 @@ class Dac(MakefilePackage):
     git = "ssh://git@gitlab-fsl.jsc.nasa.gov/rgd-team/dac.git"
 
     version("devel", commit="aec9946b284eebe0080dc7051427196739854a7b")
+    version("14.7", tag="v14.7")
 
     depends_on("mpi")
 
