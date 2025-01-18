@@ -5,10 +5,10 @@ class Dac(MakefilePackage):
     """NASA JSC's Direct Simulation Monte Carlo code"""
 
     homepage = "https://gitlab-fsl.jsc.nasa.gov/rgd-team/dac"
-    git = "ssh://git@gitlab-fsl.jsc.nasa.gov/rgd-team/dac.git"
+    git = "file:///auto/admin/software/dist/dac/dac-repo"
 
     version("devel", commit="aec9946b284eebe0080dc7051427196739854a7b")
-    version("14.7", tag="v14.7")
+    version("14g", tag="v14g")
 
     depends_on("mpi")
 
