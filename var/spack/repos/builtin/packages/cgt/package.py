@@ -10,6 +10,7 @@ class Cgt(AutotoolsPackage):
     homepage = "https://www.nas.nasa.gov/software/chimera.html"
     url = "file:///auto/admin/software/dist/cgt/chimera2.2dev.tar.gz"
 
+    version("2.2q",   sha256="3d5988176c2381e0eef5cbc5a6c4bc844842541dd67624a995d6e9d1e9ce3077")
     version("2.2dev", sha256="091bf927637a671eb6def1a4be044f498349ce4478e82c0ea1aec26eff531af5")
 
     variant("dp",    default=False, description="Enable double precision.")
