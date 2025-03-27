@@ -1,0 +1,9 @@
+diff -Naur fun3d_intg-14.0-d03712b.orig/build-tools/aclocal/mpi.m4 fun3d_intg-14.0-d03712b/build-tools/aclocal/mpi.m4
+--- fun3d_intg-14.0-d03712b.orig/build-tools/aclocal/mpi.m4	2023-02-02 00:20:54.000000000 -0600
++++ fun3d_intg-14.0-d03712b/build-tools/aclocal/mpi.m4	2025-03-26 22:01:47.430123481 -0500
+@@ -326,4 +326,5 @@
+   for i in $[{tokens[*]}]; do
+     $2="$$2 $(AS_ECHO([$i]) | grep -- -l 2> /dev/null)"
+   done
++  $2=${$2//'-Wl,/'/'-Wl,-rpath,/'}
+ ])

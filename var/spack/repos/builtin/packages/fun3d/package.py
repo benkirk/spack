@@ -13,9 +13,15 @@ class Fun3d(AutotoolsPackage):
     homepage = "https://fun3d.larc.nasa.gov/"
     url = "file:///auto/admin/software/dist/fun3d/fun3d_intg-14.0d03712b.tar.gz"
 
-    version("14.0d03712b", sha256="d92cdb39994771389effe99f783fe72094481d6d114518593070017def27c4ac")
+    version("14.1.6e82beb",   sha256="2275780b1d52cb973d9fa4aa2c73e83d1dbf8349030bb76f188adc711390cf80")
+    version("14.0.2.16d1333", sha256="53b2951df3a146e2c2cfd006ca4232676666d161b7f92242e4114fb2ab91a557")
+    version("14.0d03712b",    sha256="d92cdb39994771389effe99f783fe72094481d6d114518593070017def27c4ac")
 
     patch("f3d.patch")
+
+    # This patch gets MOST of the rpath issues, but not all of them.
+    # Using the fix_rpath function below instead, which catches everything.
+    #patch("fix_rpath_autoconf.patch")
 
     variant(
         "ftune",
@@ -96,7 +102,18 @@ class Fun3d(AutotoolsPackage):
 
         return args
 
+    @run_after("configure")
+    def fix_rpaths(self):
+        """Fix the rpath problems caused by mpicc -show"""
+
+        # For all Makefiles, replace all the -Wl,/path occurances with -Wl,-rpath,/path
+        # This is coming in from "mpicc -show"
+        for file in find(".", "Makefile", recursive=True):
+            print("fixing rpaths in {file}...")
+            filter_file("-Wl,/", "-Wl,-rpath,/", file)
+
     def patch(self):
-        """Find all occurrences of 'File.exists' and replace them with 'File.file'"""
+        # Find all occurrences of 'File.exists' in Ruby files and replace them with 'File.file'
         for file in find("fun3d/utils", "*.rb", recursive=True):
             filter_file("File.exists", "File.file", file)
+
