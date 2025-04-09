@@ -5,6 +5,7 @@
 
 import platform
 import os
+import glob
 
 from spack.package import *
 from spack.util.environment import EnvironmentModifications
@@ -55,6 +56,11 @@ class Esp(Package):
             makefile = FileFilter(file)
             makefile.filter("-rpath %", "-rpath,%")
 
+        # Fix the 'Please install ESP in directory with a shorter path' issue
+        for file in glob.glob("Python*/install.sh"):
+            installfile = FileFilter(file)
+            installfile.filter("exit 1", "#exit 1")
+
         # This copies the source to the final installion location
         install_tree(".", prefix)
 
@@ -69,7 +75,7 @@ class Esp(Package):
         # staging area and then transfer.
         with working_dir(prefix):
             bash("setup.sh") # Run the setup script that comes with ESP
-            bash(script)     # Run the setup to finish the process
+            bash(script)     # Run the script to finish the process
 
     def setup_run_environment(self, env):
         filename = self.prefix.join("EngSketchPad").join("ESPenv.sh")
